@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ site.title }}</title>
+</head>
+<body>
+
+	{{ content }}
+
+	<div>
+	    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+	    {% for post in site.posts %}
+	        <h3><a class="post-link" href="{{ post.url }}">{{ post.title }}</a></h3>
+	        <span class="post-meta">{{ post.date | date: date_format }}</span>
+	        <p>{{ post.excerpt }}</p>
+	        <p>({{ post.minutes }} минут)</p>
+	      <hr>
+	    {% endfor %}
+	</div>
+	
+	
+	{% include footer.html %}
+</body>
+</html>
