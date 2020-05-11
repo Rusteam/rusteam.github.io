@@ -22,7 +22,8 @@ title: Intelligence & Art
 email: rustemgal@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Блог про машинное обучение и искусственный интеллект
-url: "rusteam.github.io" 
+url: "rusteam.github.io"
+base_url: ""
 
 # Build settings
 theme: jekyll-theme-tactile
