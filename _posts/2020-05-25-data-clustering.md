@@ -68,8 +68,8 @@ Telegram предоставил множество статей из разны�
 
 | Примеры новостей     | Примеры не новостей |
 | :------------- | :------------- |
-| <img src="/assets/images/ru_news.png"> | <img src="/assets/images/ru_not_news.png"> |
-| <img src="/assets/images/en_news.png"> | <img src="/assets/images/en_not_news.png"> |
+| <img src="/assets/images/ru_news.png" alt="russian news"> | <img src="/assets/images/ru_not_news.png" alt="russian not news"> |
+| <img src="/assets/images/en_news.png" alt="english news"> | <img src="/assets/images/en_not_news.png" alt="english not news"> |
 
 #### 3. Категории
 
@@ -94,7 +94,7 @@ Telegram предоставил множество статей из разны�
 
 | Категории на русском     | Категории на английском     |
 | :------------- | :------------- |
-|  <img src="/assets/images/ru_category.gif">    |  <img src="/assets/images/en_category.gif">    |
+|  <img src="/assets/images/ru_category.gif" alt="russian categories">    |  <img src="/assets/images/en_category.gif" alt="english categories">    |
 
 #### 4. Сюжеты
 В отличии от классификаций на категории или определения новостей, для
@@ -108,8 +108,8 @@ Telegram предоставил множество статей из разны�
 
 | Пример результатов кластеризации    |
 | :------------- |
-| <img src="/assets/images/ru_clusters.gif">     |
-| <img src="/assets/images/en_clusters.gif">     |
+| <img src="/assets/images/ru_clusters.gif" alt="russian clusters">     |
+| <img src="/assets/images/en_clusters.gif" alt="english clusters">     |
 
 #### 5. Ранжирование сюжетов
 
@@ -123,8 +123,8 @@ Telegram предоставил множество статей из разны�
 
 | Результаты сортировки сюжетов    |
 | :------------- |
-| <img src="/assets/images/ru_top_threads.png">     |
-| <img src="/assets/images/en_top_threads.png">     |
+| <img src="/assets/images/ru_top_threads.png" alt="russian top threads">     |
+| <img src="/assets/images/en_top_threads.png" alt="english top threads">     |
 
 ### Заключение
 
