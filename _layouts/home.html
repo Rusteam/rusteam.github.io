@@ -5,8 +5,11 @@ layout: default
 <html>
 <head>
 	<title>{{ site.title }}</title>
+
 </head>
 <body>
+	{% include nav.html %}
+	<hr>
 
 	{{ content }}
 
@@ -20,8 +23,8 @@ layout: default
 	      <hr>
 	    {% endfor %}
 	</div>
-	
-	
-	{% include footer.html %}
+
+	<hr>
+	{% include nav.html %}
 </body>
 </html>
