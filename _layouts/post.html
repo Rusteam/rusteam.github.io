@@ -8,12 +8,18 @@ layout: default
 			<title>{{ site.title }}</title>
 		</head>
 		<body>
+			{% include nav.html %}
+			<hr>
+
 			<div class="container">
 
 			{{ content }}
 
 			</div><!-- /.container -->
-			
-			{% include footer.html %}
+
+			<hr>
+			{% include subscribe.html %}
+			<br>
+			{% include nav.html %}
 		</body>
 	</html>
