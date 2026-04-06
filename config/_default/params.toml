@@ -1,0 +1,25 @@
+mainSections = ["posts"]
+env = "production"
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = true
+ShowShareButtons = true
+ShowToc = false
+
+  [homeInfoParams]
+    Title = "Intelligence & Art"
+    Content = "Blog about machine learning, computer vision, and AI engineering"
+
+  [[socialIcons]]
+    name = "github"
+    url = "https://github.com/Rusteam"
+
+  [[socialIcons]]
+    name = "medium"
+    url = "https://medium.com/@rustemgal"
+
+  [[socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/rustemg/"

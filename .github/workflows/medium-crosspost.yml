@@ -1,0 +1,79 @@
+name: Cross-post to Medium
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'content/**/posts/**'
+
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect new posts
+        id: detect
+        run: |
+          CHANGED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'content/*/posts/*.md' || true)
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -z "$CHANGED" ]; then
+            echo "has_new=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_new=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish to Medium
+        if: steps.detect.outputs.has_new == 'true'
+        env:
+          MEDIUM_TOKEN: ${{ secrets.MEDIUM_TOKEN }}
+        run: |
+          USER_ID=$(curl -s -H "Authorization: Bearer $MEDIUM_TOKEN" \
+            https://api.medium.com/v1/me | jq -r '.data.id')
+
+          echo "${{ steps.detect.outputs.changed_files }}" | while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+
+            TITLE=$(grep '^title:' "$FILE" | head -1 | sed 's/^title: *"*//;s/"*$//')
+            SLUG=$(basename "$FILE" .md)
+            DATE=$(grep '^date:' "$FILE" | head -1 | sed 's/^date: *//')
+
+            LANG=$(echo "$FILE" | sed 's|content/\([^/]*\)/.*|\1|')
+
+            YEAR=$(echo $DATE | cut -d- -f1)
+            MONTH=$(echo $DATE | cut -d- -f2)
+            DAY=$(echo $DATE | cut -d- -f3)
+            if [ "$LANG" = "en" ]; then
+              CANONICAL="https://rusteam.github.io/blog/$YEAR/$MONTH/$DAY/$SLUG"
+            else
+              CANONICAL="https://rusteam.github.io/ru/blog/$YEAR/$MONTH/$DAY/$SLUG"
+            fi
+
+            BODY=$(awk '/^---$/{c++;next}c>=2' "$FILE")
+
+            RESPONSE=$(curl -s -X POST \
+              "https://api.medium.com/v1/users/$USER_ID/posts" \
+              -H "Authorization: Bearer $MEDIUM_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n \
+                --arg title "$TITLE" \
+                --arg content "$BODY" \
+                --arg canonical "$CANONICAL" \
+                '{
+                  title: $title,
+                  contentFormat: "markdown",
+                  content: $content,
+                  canonicalUrl: $canonical,
+                  publishStatus: "draft",
+                  tags: ["machine-learning", "data-science"]
+                }')")
+
+            echo "Published: $TITLE"
+            echo "Response: $RESPONSE"
+          done

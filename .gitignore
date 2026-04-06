@@ -1,8 +1,5 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+public/
+resources/
+.hugo_build.lock
 .DS_Store
-_posts/.DS_Store
-assets/notebooks/.ipynb_checkpoints/
+node_modules/

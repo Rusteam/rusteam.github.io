@@ -1,0 +1,15 @@
+[en]
+  languageName = "English"
+  languageCode = "en"
+  weight = 1
+  contentDir = "content/en"
+  [en.params]
+    description = "Blog about machine learning, computer vision, and AI engineering"
+
+[ru]
+  languageName = "Русский"
+  languageCode = "ru"
+  weight = 2
+  contentDir = "content/ru"
+  [ru.params]
+    description = "Блог про машинное обучение и искусственный интеллект"

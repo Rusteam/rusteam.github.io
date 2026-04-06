@@ -1,0 +1,23 @@
+baseURL = "https://rusteam.github.io/"
+title = "Intelligence & Art"
+theme = "PaperMod"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[permalinks]
+  [permalinks.page]
+    posts = "/blog/:year/:month/:day/:slug"
+  [permalinks.section]
+    posts = "/blog/:year/:month/:day/:slug"
